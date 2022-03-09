@@ -43,7 +43,9 @@ export default function Home({ navigation }) {
         }
     }, [navigation, isFocused])
 
+
     const renderItem = ({ item }) => {
+
         return (
             <WeaterCardGeneral
                 latitude={item.lat}
@@ -54,6 +56,7 @@ export default function Home({ navigation }) {
         );
     }
 
+    
 
 
     return (
@@ -71,8 +74,8 @@ export default function Home({ navigation }) {
                 }
                 data={favCities}
                 renderItem={(item) => {
-                    return renderItem(item)
-                }
+                        return renderItem(item)
+                    }
                 }
                 refreshing={true}
                 keyExtractor={(item, index) => { return index }}
@@ -87,11 +90,6 @@ export default function Home({ navigation }) {
                                 </Card.Content>
                             </Card>
                         :null}
-                        {/*<Button
-                            onPress={clearAll}
-                            title="Borrar favoritos"
-                            color="red"
-                        />*/}
                     </View>
                 }
             />

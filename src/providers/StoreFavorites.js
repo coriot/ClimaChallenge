@@ -20,7 +20,6 @@ export const removeFav = async (id) => {
     try {
         let favArr = await getFav();
         let newArr = favArr.filter((item) => item.id != id);
-        console.log(newArr)
         const jsonValue = JSON.stringify(newArr);
         await AsyncStorage.setItem('favorites', jsonValue);
         return true;

@@ -23,7 +23,9 @@ export default function WeaterCardGeneral(
         longitude,
         extendDays = false,
         onPress,
-        nameFavorite
+        nameFavorite,
+        
+        
     }) {
     const [weatherData, setWeatherData] = useState(null);
     const [currentData, setCurrentData] = useState(null);
@@ -32,6 +34,7 @@ export default function WeaterCardGeneral(
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
     const getData = async (lat, lon) => {
+
         const [ current, res ] = await Promise.all([
             CurrentWatherData(lat,lon), FiveDaysWatherData(lat,lon)
         ])
@@ -43,10 +46,14 @@ export default function WeaterCardGeneral(
             setWeatherData(null);
             setCurrentData(null);
         }
+      
+    
 
     }
 
+
     useEffect(() => {
+
         if(currentLocation){
             const { userLocation } = userContext;
             getData(userLocation.latitude, userLocation.longitude);
@@ -98,7 +105,12 @@ export default function WeaterCardGeneral(
                                 <Text>Sensación Térmica {Math.round(weatherData.current.feels_like)}°</Text>
                             </View>
                         </View>
-                        {!extendDays ? <Switch value={isSwitchOn} onValueChange={onToggleSwitch} /> : null}
+                        {!extendDays ? 
+                            <View style={{alignItems:'center', flexDirection:'row', justifyContent:'flex-end'}}>
+                                <Text>Ver más</Text>
+                                <Switch value={isSwitchOn} onValueChange={onToggleSwitch} /> 
+                            </View>
+                        : null}
                     </View>
                     {extendDays || isSwitchOn ? 
                         <View style={styles.containerDaily}>
@@ -120,7 +132,7 @@ export default function WeaterCardGeneral(
                 </Card.Content>:
                 currentLocation ?
                 <View style={{padding:15}}>
-                    <ActivityIndicator size={48} color="#0000ff" />
+                    <ActivityIndicator size={48} color="#406882" />
                 </View>
             :null}
         </Card>

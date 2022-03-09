@@ -38,16 +38,11 @@ export default function SearchCity({navigation}){
                 description={item.country}
                 left={props => <List.Icon {...props} icon="map-marker" />}
                 onPress={() => handleStore(item)}
+                style={{borderBottomWidth:1,borderBottomColor:'#d4d4d4'}}
             />
         )
     }
 
-    async function leer(){
-        const res = await getFav();
-        console.log(res)
-    }
-
-    
 
 
     return (
@@ -66,12 +61,6 @@ export default function SearchCity({navigation}){
                 keyExtractor={(item, index) => { return index}}
             />:null}
 
-   
-            {/*<Button
-                onPress={()=>leer()}
-                title="Leer favoritos"
-                color="green"
-            />*/}
 
         </View>
     );
